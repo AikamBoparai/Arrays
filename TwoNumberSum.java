@@ -1,4 +1,20 @@
+import java.util.HashSet;
+
 public class TwoNumberSum extends ArrayHelper{
+
+    public static int[] twoNumberSumUnsorted(int[] array, int targetSum) {
+        //will need to use a hashset
+        HashSet<Integer> buffer = new HashSet<>();
+        for(int i = 0; i < array.length; i++){
+            if(buffer.contains(array[i])){
+                return new int[]{array[i], targetSum-array[i]};
+            }
+            else{
+                buffer.add(targetSum-array[i]);
+            }
+        }
+        return new int[0];
+    }
 
     public static int[] twoNumberSumSorted(int[] array, int targetSum) {
         // use two pointers left and right which iterate through the array
@@ -36,5 +52,10 @@ public class TwoNumberSum extends ArrayHelper{
         System.out.println(arrayString(array3) + " Target Sum: " + 108 + " result: " + 
         arrayString(twoNumberSumSorted(array3, 108)));
 
+        //unsorted array
+        int[] array4 = {1000, 4, -1 , 6 -99, -1000};
+
+        System.out.println(arrayString(array4) + " Target Sum: " + 0 + " result: " + 
+        arrayString(twoNumberSumUnsorted(array4, 0)));
     }
 }
